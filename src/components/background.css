@@ -1,0 +1,157 @@
+:root{
+    --purple-1: #efe8fb; /* ultra pastel lavender */
+    --purple-2: #e6ddf8; /* very soft lavender */
+    --blue-1: #e6f5ff;   /* pale sky */
+    --blue-2: #d7ecff;   /* soft baby blue */
+}
+
+
+/* ...existing code... */
+
+
+.bg-container{
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+.gradient{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--purple-1) 0%, var(--purple-2) 40%, var(--blue-1) 75%, var(--blue-2) 100%);
+    filter: blur(18px);
+    transform-origin: center;
+    opacity: 0.98;
+}
+
+
+.stars{
+    position: absolute;
+    width: 100%; /* use viewport-relative coordinates so star left/top % match the page */
+    height: 100%;
+    left: 0; /* align with the viewport */
+    top: 0;
+    display: block;
+    opacity: 0.95;
+    z-index: 1; /* keep above gradient */
+    pointer-events: none;
+}
+
+
+@keyframes twinkle {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
+    25% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.02); }
+    55% { opacity: 0.22; transform: translate(-50%, -50%) scale(0.98); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.97); }
+}
+
+/* tweaked star defaults for better visibility */
+.star{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    user-select: none;
+    -webkit-user-drag: none;
+    opacity: 0; /* start invisible */
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.04));
+    /* twinkle controls both fade-in and brightness; per-star delay determines when that first bright pulse occurs */
+    animation: twinkle var(--twinkle-duration, 3s) ease-in-out var(--twinkle-delay, 0s) infinite;
+    z-index: 2;
+    transform: translate(-50%, -50%); /* center at left/top % */
+    display: block;
+}
+
+
+/* place the stars around the viewport */
+.star--1{ left: 12%; top: 8%; width:48px }
+.star--2{ left: 68%; top: 4%; transform: scale(0.82) }
+.star--3{ left: 36%; top: 28%; transform: scale(0.9) }
+.star--4{ left: 82%; top: 26%; transform: scale(0.7) }
+
+
+/* wispy clouds: layered radial gradients + blurred, semi-transparent wisps */
+.cloud{
+    position: absolute;
+    width: 300px;
+    height: 110px;
+    border-radius: 50%;
+
+    /* multiple radial gradients layered to create soft, translucent puffs */
+    background-image:
+      radial-gradient(60% 55% at 22% 50%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 24%, rgba(255,255,255,0.18) 48%, transparent 62%),
+      radial-gradient(50% 40% at 50% 35%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.55) 22%, rgba(255,255,255,0.12) 48%, transparent 66%),
+      radial-gradient(45% 38% at 78% 58%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.45) 20%, rgba(255,255,255,0.08) 46%, transparent 64%);
+
+    background-repeat: no-repeat;
+    mix-blend-mode: screen;
+    opacity: 0.62; /* fairly transparent */
+    filter: blur(6px) saturate(1.02);
+    transform-origin: center;
+    overflow: visible;
+}
+
+/* thin trailing wisps using pseudo-elements */
+.cloud::before,
+.cloud::after{
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    will-change: transform, opacity;
+}
+
+.cloud::before{
+    /* left trailing wisp */
+    left: -60px;
+    top: 18px;
+    width: 220px;
+    height: 46px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.04));
+    filter: blur(8px);
+    opacity: 0.36;
+    transform: rotate(-6deg) translateX(0);
+}
+
+.cloud::after{
+    /* right trailing wisp */
+    right: -80px;
+    top: 12px;
+    width: 260px;
+    height: 56px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.02));
+    filter: blur(10px);
+    opacity: 0.34;
+    transform: rotate(6deg) translateX(0);
+}
+
+/* subtle morph & float for the wispy feel */
+@keyframes wispyFloat {
+    0%{ transform: translateX(0) scaleX(1) }
+    50%{ transform: translateX(10px) scaleX(1.03) }
+    100%{ transform: translateX(0) scaleX(1) }
+}
+
+@keyframes wispyWaver {
+    0%{ transform: translateX(0) rotate(-1deg) }
+    50%{ transform: translateX(6px) rotate(1deg) }
+    100%{ transform: translateX(0) rotate(-1deg) }
+}
+
+.cloud{ animation: wispyFloat 18s ease-in-out infinite }
+.cloud::before{ animation: wispyWaver 20s ease-in-out infinite }
+.cloud::after{ animation: wispyWaver 22s ease-in-out infinite }
+
+.cloud--1{ left: 6%; top: 58%; transform: scale(0.9) }
+.cloud--2{ right: 10%; top: 14%; transform: scale(0.8) }
+
+
+/* responsive tweaks: keep wisps but scale down on small screens */
+@media (max-width: 600px){
+    .star{ width: 28px }
+    .cloud{ width: 220px; height: 90px; opacity: 0.62; filter: blur(5px) }
+    .cloud::before{ left: -44px; top: 14px; width: 170px; height: 36px; filter: blur(6px) }
+    .cloud::after{ right: -56px; top: 10px; width: 200px; height: 44px; filter: blur(7px) }
+}

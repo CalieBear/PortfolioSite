@@ -1,0 +1,122 @@
+/* Pastel translucent header matching background vibe */
+.HeaderStyle{
+    position: relative;
+    font-family: inherit;
+}
+
+.HeaderStyle > div{
+    backdrop-filter: blur(6px);
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(230,220,240,0.06));
+    border-radius: 12px;
+    padding: 12px 18px; /* slightly smaller height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 18px rgba(110,80,130,0.06);
+    max-width: 1100px; /* increased from 960px to widen the header */
+    margin: 18px auto;
+}
+
+.HeaderStyle ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+}
+
+.HeaderStyle li{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color: #6f5980; /* pastel-muted purple */
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.HeaderStyle li:hover{
+    background: linear-gradient(90deg, rgba(230,220,240,0.12), rgba(240,235,250,0.08));
+}
+
+.HeaderStyle img{
+    height: 24px; /* slightly smaller icons to match reduced header */
+}
+
+/* dropdown menu styles */
+.menuWrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.menuWrapper img{
+    height: 24px;
+    cursor: pointer;
+}
+
+.menuDropdown{
+    width: 180px; /* slightly larger */
+    position: absolute;
+    /* align to the left edge of the centered inner container (max-width: 1100px)
+       subtract extra offset so the menu items sit left of the menu icon as requested */
+    left: calc(50% - 550px - 15px);
+    top: calc(100% + 12px); /* adjusted gap to match smaller header */
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(240,235,250,0.06));
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 30px rgba(80,50,110,0.08);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(200,180,220,0.12);
+    z-index: 50; /* ensure menu sits above background and content */
+    transform-origin: top left;
+}
+
+.menuDropdown ul{
+    display: flex;
+    flex-direction: column; /* vertical list */
+    gap: 6px;
+    margin: 0;
+    padding: 0; /* remove default padding causing left space */
+}
+
+.menuDropdown li{
+    padding: 8px 10px;
+    border-radius: 8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color: #5f4668;
+    list-style: none; /* remove bullet */
+}
+
+.menuDropdown img{ height:18px }
+
+/* fallback for narrow viewports where the centered calculation might overflow */
+@media (max-width: 980px){
+    .menuDropdown{
+        left: 12px; /* align with container padding on small screens */
+        right: auto;
+        top: calc(100% + 10px);
+        width: calc(100% - 24px); /* fit within container */
+    }
+}
+
+/* mobile adjustments */
+@media (max-width: 600px){
+    .HeaderStyle > div{ padding: 8px 12px; margin: 12px }
+    .HeaderStyle img{ height: 18px }
+    .menuWrapper img{ height: 18px }
+}
+
+/* right-side social icons */
+.HeaderStyle .socialIcons{ margin-left: auto; display:flex; gap:12px; align-items:center }
+.HeaderStyle .socialIcons img, .HeaderStyle > div img{ height: 24px; }
+.HeaderStyle .socialIcons a{ display:inline-flex; align-items:center; justify-content:center; padding:6px; border-radius:8px }
+.HeaderStyle .socialIcons a:hover{ background: rgba(255,255,255,0.04) }
+.HeaderStyle .socialIcons img.socialIcon{ height:22px; width:22px }
+.HeaderStyle .socialIcons img.linkedin{ height:32px; width:32px } /* slightly larger to match visual weight */
+
+@media (max-width: 600px){
+  .HeaderStyle .socialIcons img{ height: 18px }
+}

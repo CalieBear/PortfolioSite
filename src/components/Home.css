@@ -1,0 +1,231 @@
+/* simple carousel styles */
+.carousel{
+  max-width: 640px;
+  margin: 40px auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.carousel .nav{
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding:8px 10px;
+  cursor:pointer;
+  border: 1px solid rgba(200,180,220,0.12);
+}
+.carousel .card{
+  background: rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 12px;
+  width: 460px;
+  cursor:pointer;
+  box-shadow: 0 6px 20px rgba(90,60,110,0.04);
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.carousel .thumb{
+  width: 140px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  flex-shrink:0;
+}
+.carousel .meta{
+  text-align:left;
+}
+.carousel .title{ font-weight:700; color:#5f4668 }
+.carousel .blurb{ color:#7a6686 }
+@media (max-width:600px){
+  .carousel{ padding: 8px }
+  .carousel .card{ width: calc(100% - 96px); }
+  .carousel .thumb{ width: 110px; height: 80px }
+}
+
+/* large carousel styles */
+.carousel.large{
+  max-width: 780px; /* slightly smaller overall */
+  margin: 40px auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  justify-content:center;
+}
+
+.carousel .nav{
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding:12px 14px; /* larger click area for bigger arrows */
+  cursor:pointer;
+  border: 1px solid rgba(200,180,220,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* nav arrow images */
+.nav img{ width:28px; height:28px; display:block }
+
+.largeCard{
+  width: 520px; /* slightly smaller large card so it feels less wide */
+  background: rgba(255,255,255,0.02);
+  padding: 0;
+  border-radius: 14px;
+  cursor:pointer;
+  box-shadow: 0 10px 30px rgba(90,60,110,0.05);
+  display:block;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.largeThumb{
+  width: 100%;
+  height: auto; /* let aspect-ratio handle the height */
+  aspect-ratio: 1 / 1; /* force square */
+  background-size: cover;
+  background-position: center;
+  display:block;
+}
+
+.cardFooter{
+  padding: 22px 24px; /* taller footer with more breathing room */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+.cardFooter .title{ font-weight:700; color:#5f4668; font-size:1.1rem }
+.cardFooter .blurb{ color:#7a6686; margin-top:6px }
+
+.largeCard:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(90,60,110,0.08); transition: transform 220ms ease, box-shadow 220ms ease }
+
+@keyframes cardIn{
+  to{ opacity: 1; transform: translateY(0) scale(1) }
+}
+
+.largeMeta{ padding-top:12px; text-align:left }
+.largeMeta .title{ font-weight:700; color:#5f4668; font-size:1.2rem }
+.largeMeta .blurb{ color:#7a6686; margin-top:8px }
+
+.dots{ display:flex; gap:8px; justify-content:center; margin-top:18px }
+.dot{ 
+  width:12px; 
+  height:12px; 
+  display:inline-block; /* ensure width/height apply consistently */
+  padding:0; /* remove default button padding */
+  box-sizing: border-box; /* include border in dimensions */
+  border-radius:50%; /* perfect circle */
+  background: rgba(255,255,255,0.18); 
+  border: 1px solid rgba(120,100,140,0.08); 
+  cursor:pointer; 
+  line-height: 0; /* avoid text metrics from changing shape */
+}
+.dot.active{ background: #8a6a89; box-shadow:0 6px 12px rgba(110,80,130,0.12) }
+
+/* overrides to make the large carousel slightly smaller, image square, larger arrows, and taller footer */
+.carousel.large{
+  max-width: 780px; /* slightly smaller overall */
+  gap: 12px;
+}
+
+.carousel.large .nav{
+  padding:12px 14px; /* larger click area for bigger arrows */
+}
+
+/* increase arrow icon size */
+.carousel.large .nav img{ width:28px; height:28px; }
+
+/* slightly smaller large card so it feels less wide */
+.carousel.large .largeCard{ width: 520px; }
+
+/* make the thumbnail a responsive square */
+.carousel.large .largeThumb{
+  display: block;
+  width: 100%;
+  height: auto; /* let aspect-ratio handle the height */
+  aspect-ratio: 1 / 1; /* force square */
+  object-fit: cover;
+}
+
+/* taller footer with more breathing room */
+.carousel.large .cardFooter{
+  padding: 22px 24px;
+  gap: 20px;
+}
+
+.carousel.large .largeMeta .title{ font-size: 1.18rem }
+.carousel.large .largeMeta .blurb{ margin-top:10px }
+
+/* FINAL OVERRIDES: smaller carousel, larger arrows, solid footer */
+.carousel.large{
+  max-width: 700px; /* shrink overall carousel */
+  gap: 10px;
+}
+
+.carousel.large .nav{
+  padding:14px 16px; /* larger click area */
+}
+
+.carousel.large .nav img{ width:36px; height:36px; }
+
+/* reduce the big card width so the carousel feels smaller */
+.carousel.large .card,
+.carousel.large .card.largeCard{
+  display: block !important;
+  width: 480px !important;
+  padding: 0 !important;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* keep the image as a square via aspect-ratio and avoid fixed height overrides */
+.carousel.large .largeThumb{
+  width: 100%;
+  height: 300px; /* smaller image height */
+  aspect-ratio: unset; /* stop forcing square */
+  object-fit: cover;
+  display:block;
+}
+
+/* solid footer background (not a gradient) */
+.carousel.large .cardFooter{
+  background: rgba(120,90,140,0.06); /* gentle pastel purple tint */
+  padding: 22px 24px; /* keep taller footer */
+  gap: 18px;
+}
+
+/* Restore square thumbnail but smaller than full card width — centered and responsive */
+.carousel.large .card.largeCard .largeThumb,
+.carousel.large .card .largeThumb{
+  width: 86%;            /* image is smaller than card width */
+  max-width: 420px;     /* cap size on large screens */
+  margin: 12px auto 0;  /* center the image with small top gap */
+  aspect-ratio: 1 / 1;  /* keep image square */
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 800px){
+  .carousel.large .card.largeCard .largeThumb,
+  .carousel.large .card .largeThumb{
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 480px){
+  .carousel.large .card.largeCard .largeThumb,
+  .carousel.large .card .largeThumb{
+    width: calc(100% - 48px);
+    max-width: none;
+    margin-top: 8px;
+  }
+}
+
+/* make the large carousel a bit smaller overall */
+.carousel.large{ max-width: 600px; }
+.carousel.large .card.largeCard{ width: 420px !important }
+.carousel.large .largeThumb{ max-width: 380px; height: 220px }
+
+/* add spacing under the welcome blurb */
+.homeBlurb{ margin-bottom: 36px }

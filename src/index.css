@@ -1,0 +1,35 @@
+:root {
+  color: #8a6a89;
+  text-align: center;
+  --purple-1: #efe8fb; /* ultra pastel lavender */
+  --purple-2: #e6ddf8; /* very soft lavender */
+  --blue-1: #e6f5ff;   /* pale sky */
+  --blue-2: #d7ecff;   /* soft baby blue */
+}
+
+h1 {
+  font-size: 2.75rem;
+  color: #5C475C;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #765B75;
+  margin: 0 0 10px 0;
+}
+
+h3 {
+  font-size: 1.05rem;
+  color: #765B75;
+  margin: 0 0 8px 0;
+}
+
+img {
+  height: 25px;
+}
+a{
+  color: #765B75;
+}
