@@ -10,7 +10,7 @@ const projects = [
     thumb: reactImg,
     images: [reactImg],
     tech: ['React', 'Vite', 'CSS', 'JavaScript'],
-    github: 'https://github.com/your-github-username/portfolio'
+    github: 'https://github.com/CalieBear/PortfolioSite'
   },
   {
     id: 'p2',
