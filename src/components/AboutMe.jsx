@@ -11,10 +11,10 @@ function AboutMe(){
                 <div style={{flex:1}}>
                     <h2 style={{marginTop:0}}>Short Bio</h2>
                     <p>
-                        Hi — I'm Calista LaPorte, a junior Computer Science student at Kutztown University. I focus on systems, algorithms, and class software projects.
+                        Hi — I'm Calista LaPorte, a junior Computer Science student at Kutztown University. I focus on algorithms and class software projects.
                     </p>
                     <p>
-                        Most of my experience is from coursework and projects in C++ and Java — implementing data structures and building small systems. I enjoy debugging and improving performance.
+                        Most of my experience is from coursework and projects in C++ and Java — implementing data structures and creating small projects.
                     </p>
                 </div>
             </section>
