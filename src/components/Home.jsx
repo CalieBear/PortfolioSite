@@ -25,8 +25,8 @@ function Home({ onNavigate }){
 
             <p className="homeSummary" style={{textAlign: 'center', color:'#6f5980', fontSize:'1.15rem', margin:'18px 0 8px 0'}}>
                 I'm Calista LaPorte, a junior Computer Science student at Kutztown University. <br />
-                I enjoy building systems, solving algorithmic challenges, and collaborating on software projects. <br />
-                My experience spans Java, Python, and web development, with a passion for learning and sharing new ideas.
+                I enjoy writing code, solving algorithmic challenges, and collaborating on software projects. <br />
+                My experience includes Java, Python, and C++, with a passion for learning and sharing new ideas.
                 <br />  <br />
             </p>
 
